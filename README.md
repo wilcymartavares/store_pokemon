@@ -1,0 +1,1 @@
+Projeto de loja de cards pokemon, em Vue 3
