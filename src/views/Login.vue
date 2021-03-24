@@ -6,16 +6,25 @@
       ref="usernameElement"
       type="text"
       @keyup="usernameHandler"
+      class="inp-form"
     />
     <br />
     <br />
     <div>Password</div>
-    <input
-      v-model="password"
-      ref="passwordElement"
-      type="password"
-      @keyup="passwordHandler"
-    />
+    <div class="password">
+      <input
+        v-model="password"
+        ref="passwordElement"
+        :type="show === true ? 'text' : 'password'"
+        @keyup="passwordHandler"
+      />
+      <img
+        v-if="password"
+        src="@/assets/eye_icon.png"
+        @click="show = !show"
+        alt=""
+      />
+    </div>
     <br />
     <br />
     <div>
@@ -42,6 +51,7 @@ export default defineComponent({
     const state = reactive({
       username: '',
       password: '',
+      show: false,
     });
 
     const login = () => {
@@ -75,4 +85,37 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+img {
+  width: 23px;
+  height: 25px;
+}
+.password {
+  display: flex;
+  outline: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12em;
+  height: 20px;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 3px;
+  border-radius: 25px;
+  margin: 10px 0px;
+}
+.password input {
+  width: 80%;
+  height: 100%;
+  float: left;
+  border: none;
+  outline: none;
+}
+.inp-form {
+  outline: none;
+  width: 14.5em;
+  height: 20px;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 3px;
+  border-radius: 25px;
+  margin: 10px 0px;
+}
 </style>

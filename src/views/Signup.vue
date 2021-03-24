@@ -2,6 +2,7 @@
   <div>
     <div>Username</div>
     <input
+      class="inp-form"
       v-model="username"
       ref="usernameElement"
       type="text"
@@ -13,23 +14,40 @@
     <br />
     <br />
     <div>Password</div>
-    <input
-      v-model="password"
-      ref="passwordElement"
-      type="password"
-      @keyup="passwordHandler($event, 1)"
-    />
+    <div class="password">
+      <input
+        v-model="password"
+        ref="passwordElement"
+        :type="show === true ? 'text' : 'password'"
+        @keyup="passwordHandler($event, 1)"
+      />
+      <img
+        v-if="password"
+        src="@/assets/eye_icon.png"
+        @click="show = !show"
+        alt=""
+      />
+    </div>
     <br />
     <br />
     <div>Password Confirm</div>
-    <input
-      v-model="passwordConf"
-      ref="passwordConfElement"
-      type="password"
-      @keyup="passwordHandler($event, 2)"
-    />
+    <div class="password">
+      <input
+        v-model="passwordConf"
+        ref="passwordConfElement"
+        :type="show2 === true ? 'text' : 'password'"
+        @keyup="passwordHandler($event, 2)"
+      />
+      <img
+        v-if="passwordConf && password"
+        src="@/assets/eye_icon.png"
+        @click="show2 = !show2"
+        alt=""
+      />
+
+    </div>
     <div v-if="error.type === 'PASSWORD'" class="signup-error">
-     {{ error.msg }}
+      {{ error.msg }}
     </div>
     <br />
     <br />
@@ -58,6 +76,8 @@ export default defineComponent({
       password: '',
       passwordConf: '',
       error: { type: '', msg: '' },
+      show: false,
+      show2: false,
     });
 
     const signup = () => {
@@ -118,4 +138,36 @@ export default defineComponent({
 .signup-error {
   color: red;
 }
+img {
+  width: 23px;
+  height: 25px;
+}
+.password {
+  display: flex;
+  outline: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12em;
+  height: 20px;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 3px;
+  border-radius: 25px;
+  margin: 10px 0px;
+}
+.password input {
+  width: 80%;
+  height: 100%;
+  float: left;
+  border: none;
+  outline: none;
+}
+.inp-form{
+  outline: none;
+  width: 14.5em;
+  height: 20px;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 3px;
+  border-radius: 25px;
+  margin: 10px 0px;}
 </style>
