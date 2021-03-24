@@ -1,21 +1,23 @@
-import { readonly } from 'vue';
+import { reactive, readonly } from 'vue';
 import axios from 'axios';
 
-interface Data {
+interface Dados {
   pokemons: [];
 }
-const data: Data = {
+const dados: Dados = reactive({
   pokemons: [],
-};
-
-axios.get('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0').then((res) => {
-  data.pokemons = res.data.results;
-  console.log('tste 0', res);
 });
 
+axios.get('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0').then((res) => {
+  console.log(res);
+  dados.pokemons = res.data.results;
+  console.log('tste 0', dados.pokemons);
+});
+
+console.log('datassss', dados.pokemons);
+
 export default function usePokeDados() {
-  console.log('datassss', data);
   return readonly({
-    data,
+    dados,
   });
 }

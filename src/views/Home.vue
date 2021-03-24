@@ -3,7 +3,6 @@
     <div v-for="(poke, index) in listData" :key="poke.url">
       <h1>{{index}} - {{poke.name}}</h1>
     </div>
-    <div>{{listData}}</div>
     <!-- <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
   </div>
@@ -19,6 +18,8 @@ export default defineComponent({
   setup() {
     const pokeDados = usePokeDados();
     console.log('dentro de home', pokeDados);
+    const listData = computed(() => pokeDados.dados.pokemons);
+    console.log('testando', listData);
     // const data = reactive({
     //   pokemons: [],
     // });
@@ -26,8 +27,6 @@ export default defineComponent({
     //   console.log(res);
     //   data.pokemons = res.data.results;
     // });
-    const listData = computed(() => pokeDados.data.pokemons);
-    console.log('testando', listData);
     return { listData };
   },
   // name: 'Home',
