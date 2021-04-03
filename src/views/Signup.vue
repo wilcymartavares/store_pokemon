@@ -11,8 +11,6 @@
     <div v-if="error.type === 'USERNAME'" class="signup-error">
       {{ error.msg }}
     </div>
-    <br />
-    <br />
     <div>Password</div>
     <div class="password">
       <input
@@ -28,8 +26,6 @@
         alt=""
       />
     </div>
-    <br />
-    <br />
     <div>Password Confirm</div>
     <div class="password">
       <input
@@ -44,18 +40,14 @@
         @click="show2 = !show2"
         alt=""
       />
-
     </div>
     <div v-if="error.type === 'PASSWORD'" class="signup-error">
       {{ error.msg }}
     </div>
-    <br />
-    <br />
-    <div>
+    <div style="margin-top: 20px;">
       <button @click="signup">Signup</button>
     </div>
-    <br />
-    <div>Já tem conta? <router-link to="/login">Login</router-link></div>
+    <div style="margin-top: 20px;">Já tem conta? <router-link to="/login">Login</router-link></div>
   </div>
 </template>
 
@@ -162,12 +154,13 @@ img {
   border: none;
   outline: none;
 }
-.inp-form{
+.inp-form {
   outline: none;
   width: 14.5em;
   height: 20px;
   border: 1px solid rgb(223, 223, 223);
   padding: 3px;
   border-radius: 25px;
-  margin: 10px 0px;}
+  margin: 10px 0px;
+}
 </style>

@@ -11,7 +11,6 @@ const dados: Dados = reactive({
 axios.get('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0').then((res) => {
   console.log(res);
   dados.pokemons = res.data.results;
-  console.log('tste 0', dados.pokemons);
 });
 
 console.log('datassss', dados.pokemons);
