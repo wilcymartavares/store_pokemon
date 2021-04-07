@@ -23,10 +23,7 @@
         alt=""
       />
     </div>
-    <div v-if="error.type === 'USERNAME'" class="signup-error">
-      {{ error.msg }}
-    </div>
-    <div v-if="error.type === 'PASSWORD'" class="signup-error">
+    <div v-if="error.type === 'USERNAME' || error.type === 'PASSWORD'" class="signup-error">
       {{ error.msg }}
     </div>
     <div style="margin-top: 20px;">
@@ -107,7 +104,7 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-S img {
+img {
   width: 23px;
   height: 25px;
 }
