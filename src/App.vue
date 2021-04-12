@@ -6,11 +6,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from '@/components/Header.vue';
+import useAuth from './modules/auth';
 
 export default defineComponent({
   components: { Header },
 
   setup() {
+    const auth = useAuth();
+
+    auth.actions.loadUserData();
+    console.log(auth);
     return {};
   },
 });

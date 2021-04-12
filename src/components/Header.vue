@@ -1,20 +1,36 @@
 <template>
   <div id="nav">
-    <router-link to="/login">Login</router-link> |
+    <span v-if="!isLoggedIn">
+      <router-link to="/login">Login</router-link> |
+    </span>
+    <span v-else>
+      Bem vindo: <strong>{{name}}</strong>  |
+    </span>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/mycards">My Cards</router-link>
+    <router-link to="/mycards">My Cards</router-link> |
+    <span style="cursor: pointer" @click="logoutHandler" >Logout</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import useAuth from '@/modules/auth';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   components: {},
 
   setup() {
-    return {};
+    const auth = useAuth();
+    const isLoggedIn = computed(() => auth.state.token);
+    const name = computed(() => auth.state.name);
+    const logoutHandler = () => auth.actions.logout();
+
+    return {
+      isLoggedIn,
+      name,
+      logoutHandler,
+    };
   },
 });
 </script>

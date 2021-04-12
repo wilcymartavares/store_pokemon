@@ -13,13 +13,7 @@ import useAuth from '@/modules/auth';
 
 export default defineComponent({
   setup() {
-    const auth = useAuth();
-    console.log(auth);
-    if (auth.state.token) {
-      console.log('está logado!');
-    } else {
-      console.log('não está logado!');
-    }
+    // const auth = useAuth();
     const pokeDados = usePokeDados();
     console.log('dentro de home', pokeDados);
     const listData = computed(() => pokeDados.dados.pokemons);
