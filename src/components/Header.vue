@@ -4,12 +4,15 @@
       <router-link to="/login">Login</router-link> |
     </span>
     <span v-else>
-      Bem vindo: <strong>{{name}}</strong>  |
+      Bem vindo: <strong>{{name}}</strong>    ||
     </span>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/mycards">My Cards</router-link> |
-    <span style="cursor: pointer" @click="logoutHandler" >Logout</span>
+    <span style="cursor: pointer" @click="logoutHandler" >Logout |</span>
+    <span v-if="isLoggedIn">
+      <img src="@/assets/pngwing.com.png" alt="">
+    </span>
   </div>
 </template>
 
@@ -37,4 +40,11 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+img{
+  width: 30px;
+  margin-bottom: -9px;
+  display: inline-block;
+  flex-direction: row;
+
+}
 </style>
