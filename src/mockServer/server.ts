@@ -7,6 +7,22 @@ const user = {
 
 };
 
+export const Signup = async (name: string, username: string, password: string) => {
+  user.name = name;
+  user.username = username;
+  user.password = password;
+
+  return {
+    status: 'ok',
+    result: {
+      id: user.id,
+      name: user.name,
+      username: user.username,
+      token: 'O Token',
+    },
+  };
+};
+
 export const Login = async (username: string, password: string) => {
   if (username !== user.username) {
     return { status: 'wrong_user' };

@@ -6,11 +6,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from '@/components/Header.vue';
+import useAuth from './modules/auth';
 
 export default defineComponent({
   components: { Header },
 
   setup() {
+    const auth = useAuth();
+
+    auth.actions.loadUserData();
+    console.log(auth);
     return {};
   },
 });
@@ -23,6 +28,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
 }
 
 #nav {
@@ -36,5 +42,10 @@ export default defineComponent({
       color: #42b983;
     }
   }
+}
+
+.flex{
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

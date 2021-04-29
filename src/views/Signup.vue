@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div>Name</div>
+    <input
+      class="inp-form"
+      v-model="name"
+      type="text"
+      @keyup="nameHandler"
+    />
     <div>Username</div>
     <input
       class="inp-form"
@@ -52,6 +59,7 @@
 </template>
 
 <script lang="ts">
+import useAuth from '@/modules/auth';
 import {
   defineComponent, reactive, ref, toRefs,
 } from 'vue';
@@ -60,10 +68,12 @@ export default defineComponent({
   components: {},
 
   setup() {
+    const auth = useAuth();
     const usernameElement = ref();
     const passwordElement = ref();
     const passwordConfElement = ref();
     const state = reactive({
+      name: '',
       username: '',
       password: '',
       passwordConf: '',
@@ -72,7 +82,7 @@ export default defineComponent({
       show2: false,
     });
 
-    const signup = () => {
+    const signup = async () => {
       state.error.type = '';
       state.error.msg = '';
 
@@ -92,8 +102,17 @@ export default defineComponent({
         return;
       }
       console.log('vamos fazer o signup', state.username, state.password);
+      const res = await auth.actions.signup(state.name, state.username, state.password);
+      if (res.status === 'ok') {
+        console.log('okk');
+      }
     };
 
+    const nameHandler = (event: KeyboardEvent) => {
+      if (event.key === 'Enter' && state.name) {
+        usernameElement.value.focus();
+      }
+    };
     const usernameHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter' && state.username) {
         console.log('apertou enter, vai pro password', passwordElement.value);
@@ -115,6 +134,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       signup,
+      nameHandler,
       usernameHandler,
       passwordHandler,
       usernameElement,
