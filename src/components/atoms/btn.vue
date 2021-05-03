@@ -1,5 +1,5 @@
 <template>
-  <div class="btn" @click="clickHandler">
+  <div class="btn">
       <slot/>
   </div>
 </template>
@@ -11,11 +11,11 @@ export default defineComponent({
   components: {},
 
   setup(props, { emit }) {
-    const clickHandler = () => {
-      emit('click');
-    };
+    // const clickHandler = () => {
+    //   emit('click');
+    // };
     return {
-      clickHandler,
+      // clickHandler,
     };
   },
 });
