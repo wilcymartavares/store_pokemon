@@ -1,11 +1,11 @@
-import { reactive, readonly } from 'vue';
+import { reactive, readonly, computed } from 'vue';
 import axios from 'axios';
 
 interface Sprite {
   frontDefault: string;
 }
 
-interface Card {
+export interface Card {
   id: number;
   name: string;
   sprites: Sprite;
@@ -60,6 +60,11 @@ const mutations = {
     state.nextUrl = url;
   },
 };
+const getters = {
+  sortedList() {
+    return computed(() => state.list.sort((a, b) => a.id - b.id));
+  },
+};
 
 const actions = {
   async loadCards() {
@@ -79,6 +84,8 @@ const actions = {
     results.forEach((element: any) => {
       axios.get(element.url).then((res) => {
         const card = res.data;
+        console.log('aaaaaaaa', results);
+
         mutations.processCard(card);
       });
     });
@@ -95,6 +102,7 @@ const actions = {
 export default function usePokeDados() {
   return readonly({
     state,
+    getters,
     actions,
   });
 }
